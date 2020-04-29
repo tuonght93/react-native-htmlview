@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 import htmlparser from 'htmlparser2-without-node-native';
 import entities from 'entities';
+import transform from 'css-to-react-native';
 
 import AutoSizedImage from './AutoSizedImage';
 
