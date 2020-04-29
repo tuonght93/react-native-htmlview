@@ -46,7 +46,19 @@ export default function htmlToElement(rawHtml, customOpts = {}, done) {
     if (!parent) return null;
     const style = StyleSheet.flatten(opts.styles[parent.name]) || {};
     const parentStyle = inheritedStyle(parent.parent) || {};
-    return {...parentStyle, ...style};
+    const style2 = parent.attribs.style ? getStyle(parent.attribs.style) : {};
+    return {...parentStyle, ...style, ...style2};
+  }
+  
+  function getStyle(style) {
+    var data = style.split(";");
+    data.pop();
+    var new_data = []
+    data.forEach(element => {
+      var new_e = element.split(":");
+      new_data.push(new_e)
+    });
+    return transform(new_data)
   }
 
   function domToElement(dom, parent) {
