@@ -57,7 +57,9 @@ export default function htmlToElement(rawHtml, customOpts = {}, done) {
     var new_data = []
     data.forEach(element => {
       var new_e = element.split(":");
-      new_data.push(new_e)
+      if(new_e && new_e[0] === 'text-align') {
+        new_data.push(new_e)
+      }
     });
     return transform(new_data)
   }
